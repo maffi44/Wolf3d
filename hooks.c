@@ -12,38 +12,6 @@
 
 #include "header.h"
 
-int		key_press(int key, t_data *data)
-{
-    if (key == 53)
-        go_away(data);
-    else if (key == 13)
-        data->r_bool = 1;
-    else if (key == 1)
-        data->r_bool = 1;
-    else if (key == 0)
-        data->r_bool = 1;
-    else if (key == 2)
-        data->r_bool = 1;
-
-    /*
-	if (key == 53)
-		go_away(data);
-	else if (key == 15)
-		data->r_bool = 1;
-	else if (key == 12)
-		data->q_bool = !(data->q_bool);
-	else if (key == 4)
-		data->h_bool = 1;
-	else if (key == 3)
-		data->f_bool = 1;
-	else if (key == 24)
-		data->disco++;
-	else if (key == 27)
-		if (data->disco > 1)
-			data->disco--;
-     */
-	return (0);
-}
 
 int		key_release(int key, t_data *data)
 {

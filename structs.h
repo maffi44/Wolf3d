@@ -48,7 +48,6 @@ typedef struct	s_ref_obj
 	t_tex_coord *tex_coords;
 	int			num_of_pts;
 	int			num_of_tris;
-	png_img     texture;
 }				t_ref_obj;
 
 typedef struct	s_inst_obj
@@ -68,6 +67,8 @@ typedef struct	s_camera
 	t_matrix	rotation;
 	t_matrix	translation;
 	t_matrix	projection;
+    float		x_ang;
+    float		y_ang;
 	float		d;
 }				t_camera;
 

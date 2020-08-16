@@ -15,7 +15,7 @@
 
 t_inst_obj		*make_obj_inst(t_ref_obj *r, float x, float y, float z);
 t_camera		initialize_camera(float d);
-t_matrix		make_transform_matrix(t_inst_obj obj);
+t_matrix		make_transform_matrix(t_inst_obj obj, t_camera camera);
 t_pt2			make_pt2_from_v3(t_vec3 vec, float d);
 void			put_pixel(int x, int y, int color, t_data *data);
 void			color_loop(t_ref_obj *obj, unsigned int speed);

@@ -90,6 +90,13 @@ void			draw_triangle(t_inst_obj obj, t_tri tri, t_data *data)
 	draw_tri(screen_tri.pt1, screen_tri.pt2, screen_tri.pt3, data);
 }
 
+void            make_camera_transform(t_camera *camera)
+{
+    camera->rotation = make_rotation_matrix(0, 0);
+ //   camera->transform = matrix_mult( camera->rotation, camera->translation);
+    camera->transform = camera->translation;
+}
+
 void			render_frame(t_inst_obj *objects, int num_of_obj, t_data *data)
 {
 	int i;
@@ -98,9 +105,10 @@ void			render_frame(t_inst_obj *objects, int num_of_obj, t_data *data)
 	ft_bzero(data->img_data, WIDTH * HIEGHT * 4);
 	ft_bzero(data->zbuff, sizeof(float) * WIDTH * HIEGHT);
 	i = 0;
+	make_camera_transform(&(data->camera));
 	while (i < num_of_obj)
 	{
-		objects[i].transform = make_transform_matrix(objects[i]);
+		objects[i].transform = make_transform_matrix(objects[i], data->camera);
 		j = -1;
 		while (++j < objects[i].ref_obj->num_of_tris)
 			draw_triangle(objects[i],
