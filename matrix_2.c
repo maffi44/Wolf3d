@@ -53,16 +53,6 @@ inline t_vec3		make_vertex(float x, float y, float z, unsigned int color)
 	return (vertex);
 }
 
-inline t_matrix		make_transform_matrix(t_inst_obj obj, t_camera camera)
-{
-	t_matrix transform;
-
-	transform = matrix_mult(obj.rotation, obj.scale);
-	transform = matrix_mult(transform, obj.translate);
-    transform = matrix_mult(transform, camera.transform);
-	return (transform);
-}
-
 inline t_matrix		make_rotation_matrix(float x_rot, float y_rot)
 {
 	t_matrix	mat;

@@ -97,6 +97,16 @@ void            make_camera_transform(t_camera *camera)
     camera->transform = camera->translation;
 }
 
+inline t_matrix		make_transform_matrix(t_inst_obj obj, t_camera camera)
+{
+	t_matrix transform;
+
+	transform = matrix_mult(obj.rotation, obj.scale);
+	transform = matrix_mult(transform, obj.translate);
+    transform = matrix_mult(transform, camera.translation);
+	return (transform);
+}
+
 void			render_frame(t_inst_obj *objects, int num_of_obj, t_data *data)
 {
 	int i;
