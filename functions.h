@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcamila <mcamila@student.42.fr>            +#+  +:+       +#+        */
+/*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 02:00:33 by mcamila           #+#    #+#             */
-/*   Updated: 2020/02/22 06:08:25 by mcamila          ###   ########.fr       */
+/*   Updated: 2020/08/17 15:24:46 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ int				key_press(int key, t_data *data);
 int				x_press(void *data);
 void			make_tris(t_ref_obj *obj, t_maps *maps, int x, int y);
 void			del_maps(t_maps *maps);
+t_ref_obj       *ft_read_files(int argc, char *argv[]);
 
 #endif
