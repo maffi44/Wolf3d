@@ -53,6 +53,9 @@ inline t_sp_tri	make_tri_in_space(t_inst_obj obj, t_tri tri, float d)
 	if (vec_scalar_mult(tr.normal, tri_center) <= 0)
 		return (tr);
 	tr.bool = 0;
+	tr.light_vector1 = normalize_vec(obj.ref_obj->normals[tri.pt[0]]);
+	tr.light_vector2 = normalize_vec(obj.ref_obj->normals[tri.pt[1]]);
+	tr.light_vector3 = normalize_vec(obj.ref_obj->normals[tri.pt[2]]);
 	return (tr);
 }
 
@@ -60,12 +63,12 @@ inline t_sc_tri	mk_sc_tri(t_sp_tri sp, t_data *data, t_inst_obj obj, t_tri tri)
 {
 	t_sc_tri sc;
 
-	sp.light_vector1 = vec_divide(data->dir_light, sp.vertex1);
-	sp.light_vector1 = normalize_vec(sp.light_vector1);
-	sp.light_vector2 = vec_divide(data->dir_light, sp.vertex2);
-	sp.light_vector2 = normalize_vec(sp.light_vector2);
-	sp.light_vector3 = vec_divide(data->dir_light, sp.vertex3);
-	sp.light_vector3 = normalize_vec(sp.light_vector3);
+	// sp.light_vector1 = vec_divide(data->dir_light, sp.vertex1);
+	// sp.light_vector1 = normalize_vec(sp.light_vector1);
+	// sp.light_vector2 = vec_divide(data->dir_light, sp.vertex2);
+	// sp.light_vector2 = normalize_vec(sp.light_vector2);
+	// sp.light_vector3 = vec_divide(data->dir_light, sp.vertex3);
+	// sp.light_vector3 = normalize_vec(sp.light_vector3);
 	sp.normal = normalize_vec(sp.normal);
 	sc.pt1 = make_pt2_from_v3(sp.vertex1, data->d);
 	sc.pt2 = make_pt2_from_v3(sp.vertex2, data->d);
