@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 16:21:28 by mcamila           #+#    #+#             */
-/*   Updated: 2020/08/17 15:23:24 by majosue          ###   ########.fr       */
+/*   Updated: 2020/08/18 20:26:56 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,11 @@
 int		mouse_release(int button, int x, int y, t_data *data)
 {
 	x = y;
-	/*
-    mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_ptr, 0, 0);
-
+	
 	if (button == 1)
 		((t_data *)data)->mouse_bool = 0;
 
-	*/
+	
 	return (0);
 }
 
