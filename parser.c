@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/16 20:51:07 by majosue           #+#    #+#             */
-/*   Updated: 2020/08/17 15:30:57 by majosue          ###   ########.fr       */
+/*   Updated: 2020/08/18 22:01:44 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,29 +100,25 @@ void	ft_exit(char *str, char *str2)
 **	Check args for files.obj and file.map
 */
 
-void	ft_check_args(int argc, char *argv[])
+void	ft_check_args(int argc, char **argv, int *obj_nbr)
 {
-	int i;
-	int is_obj;
-	int is_map;
+	char *line;
+	int	error;
+	int fd;
 
-	is_obj = 0;
-	is_map = 0;
-	i = 0;
-	while (++i < argc)
+	if (argc != 2)
+		ft_exit("usage: ./wolf3d file.map", "");
+	if ((fd = open(argv[1], O_RDONLY)) < 0)
+		ft_exit(NULL, NULL);
+	while ((error = get_next_line(fd, &line)) && strnstr(line, "obj ", 4))
 	{
-		is_obj += ft_strstr(argv[i], ".obj") &&
-						  ft_strlen(ft_strstr(argv[i], ".obj")) == 4
-					  ? 1
-					  : 0;
-		is_map += ft_strstr(argv[i], ".map") &&
-						  ft_strlen(ft_strstr(argv[i], ".map")) == 4
-					  ? 1
-					  : 0;
+		(*obj_nbr)++;
 	}
-	if (!is_obj || !is_map || is_map != 1 || is_map + is_obj != argc - 1 ||
-		!ft_strstr(argv[argc - 1], ".map"))
-		ft_exit("usage: ./wolf3d file.obj [file2.obj] [...] file.map", "");
+	close(fd);
+	if (!*obj_nbr)
+	{
+		ft_exit("Error: no objects found in map", "");
+	}
 }
 
 /*
@@ -263,27 +259,29 @@ void	ft_load_obj(t_ref_obj *obj, int fd)
 	}
 }
 
-t_ref_obj	*ft_read_files(int argc, char *argv[])
+t_ref_obj	*ft_read_files(int argc, char *argv[], int *ref_obj_nbr)
 {
 	int fd;
+	int fd_o;
 	int i;
+	char *line;
 	t_ref_obj *objs;
 
-	ft_check_args(argc, argv);
-	i = 0;
-	if (!(objs = malloc(sizeof(*objs) * argc - 2)))
+	ft_check_args(argc, argv, ref_obj_nbr);
+	if (!(objs = malloc(sizeof(*objs) * *ref_obj_nbr)))
 		ft_exit(NULL, NULL);
-	while (++i < argc - 1) // не читаем последний аргумент карту
+	if ((fd = open(argv[1], O_RDONLY)) < 0)
+			ft_exit(NULL, NULL);	
+	i = -1;
+	while (++i < *ref_obj_nbr)
 	{
-		if ((fd = open(argv[i], O_RDONLY)) < 0)
+		if (get_next_line(fd, &line) < 0)
 			ft_exit(NULL, NULL);
-		ft_load_obj(&(objs[i - 1]), fd);
-		close(fd);
+		if ((fd_o = open(line + 4, O_RDONLY)) < 0)
+			ft_exit(NULL, NULL);
+		ft_load_obj(&(objs[i]), fd_o);
+		free(line);
+		close(fd_o);
 	}
-	// тут прочтем карту надо придумать формат
-	/*  if ((fd = open(argv[argc - 1], O_RDONLY)) < 0)
-            ft_exit(NULL, NULL);
-        ft_load_map();
-        close(fd);  */
 	return (objs);
 }

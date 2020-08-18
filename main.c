@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 16:21:28 by mcamila           #+#    #+#             */
-/*   Updated: 2020/08/18 20:26:56 by majosue          ###   ########.fr       */
+/*   Updated: 2020/08/18 22:02:04 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,23 +82,25 @@ int		main(int argc, char **argv)
 	t_data		*data;
 	t_inst_obj	*insts;
 	t_ref_obj	*ref_objs;
+	int			ref_obj_nbr;
 
+	ref_obj_nbr = 0;
 	data = NULL;
 	/* if (argc != 2)
 		error(0, data, NULL); */
-	ref_objs = ft_read_files(argc, argv);
+	ref_objs = ft_read_files(argc, argv, &ref_obj_nbr);
 	if (!(data = (t_data*)malloc(sizeof(t_data))))
 		go_away(data);
 	inicializate_data(data);
 	//-----------print ref_obj//
-	for (int j = 0; j < ref_objs->num_of_pts; j++)
+	/* for (int j = 0; j < ref_objs->num_of_pts; j++)
 		printf("vertex %f, %f, %f\n", ref_objs->vertex[j].elem[0], ref_objs->vertex[j].elem[1], ref_objs->vertex[j].elem[2]);
 	for (int j = 0; j < ref_objs->num_of_tex_c; j++)
 		printf("tex_coords %f, %f\n", ref_objs->tex_coords[j].coord[0], ref_objs->tex_coords[j].coord[1]);
 	for (int j = 0; j < ref_objs->num_of_normals; j++)
 		printf("normals %f, %f, %f\n", ref_objs->normals[j].elem[0], ref_objs->normals[j].elem[1], ref_objs->normals[j].elem[2]);
 	for (int j = 0; j < ref_objs->num_of_tris; j++)
-		printf("tris %d, %d, %d\n", ref_objs->tri[j].pt[0], ref_objs->tri[j].pt[1], ref_objs->tri[j].pt[2]);
+		printf("tris %d, %d, %d\n", ref_objs->tri[j].pt[0], ref_objs->tri[j].pt[1], ref_objs->tri[j].pt[2]); */
 	//------------
 	//exit (0);
 	//ref_objs = make_ref_obj(argv[1], data);
