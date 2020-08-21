@@ -34,18 +34,18 @@ void		initialize_rotation(t_camera *cam)
 
 void		initialize_translation(t_camera *cam)
 {
-	cam->translation.elem[0][0] = 0;
+	cam->translation.elem[0][0] = 1;
 	cam->translation.elem[0][1] = 0;
 	cam->translation.elem[0][2] = 0;
-	cam->translation.elem[0][3] = 1;
+	cam->translation.elem[0][3] = 0;
 	cam->translation.elem[1][0] = 0;
-	cam->translation.elem[1][1] = 0;
+	cam->translation.elem[1][1] = 1;
 	cam->translation.elem[1][2] = 0;
-	cam->translation.elem[1][3] = 1;
+	cam->translation.elem[1][3] = 0;
 	cam->translation.elem[2][0] = 0;
 	cam->translation.elem[2][1] = 0;
-	cam->translation.elem[2][2] = 0;
-	cam->translation.elem[2][3] = 1;
+	cam->translation.elem[2][2] = 1;
+	cam->translation.elem[2][3] = 0;
 	cam->translation.elem[3][0] = 0;
 	cam->translation.elem[3][1] = 0;
 	cam->translation.elem[3][2] = 0;

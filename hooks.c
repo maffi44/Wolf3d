@@ -15,6 +15,14 @@
 
 int		key_release(int key, t_data *data)
 {
+	if (key == 13)
+        data->W_bool = 0;
+    else if (key == 1)
+        data->S_bool = 0;
+    else if (key == 0)
+        data->A_bool = 0;
+    else if (key == 2)
+        data->D_bool = 0;
     /*
 	if (key == 15)
 		data->r_bool = 0;
@@ -66,6 +74,10 @@ void	mouse_scale_m(t_data *data)
 
 int		mouse_press(int button, int x, int y, t_data *data)
 {
+	if (button == 2)
+	{
+		((t_data *)data)->mouse_bool = 1;
+	}
     /*
 	if (button == 1)
 	{

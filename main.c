@@ -15,6 +15,9 @@
 int		mouse_release(int button, int x, int y, t_data *data)
 {
 	x = y;
+
+	if (button == 2)
+		((t_data *)data)->mouse_bool = 0;
 	/*
     mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_ptr, 0, 0);
 
@@ -30,13 +33,13 @@ int		key_press(int key, t_data *data)
     if (key == 53)
         go_away(data);
     else if (key == 13)
-        data->camera.translation.elem[0][3] -= 0.2;
+        data->W_bool = 1;
     else if (key == 1)
-        data->camera.translation.elem[0][3] += 0.2;
+        data->S_bool = 1;
     else if (key == 0)
-        data->camera.translation.elem[1][3] += 0.2;
+        data->A_bool = 1;
     else if (key == 2)
-        data->camera.translation.elem[1][3] -= 0.2;
+        data->D_bool = 1;
 
     /*
 	if (key == 53)
@@ -60,8 +63,11 @@ int		key_press(int key, t_data *data)
 
 int		mouse_move(int x, int y, t_data *data)
 {
-    data->camera.y_ang += (float)(y - data->y) / 150;
-    data->camera.x_ang -= (float)(x - data->x) / 150;
+	if (!(data->mouse_bool))
+	{
+		data->camera.y_ang -= (float)(y - data->y) / 1000;
+    	data->camera.x_ang += (float)(x - data->x) / 1000;
+	}
     mlx_clear_window(data->mlx_ptr, data->win_ptr);
     render_frame(data->obj_inst, 1, data);
     ((t_data*)data)->x = x;
@@ -160,11 +166,16 @@ int		main(int argc, char **argv)
 	insts = make_obj_inst(&ref_objs, 0.1f, 0.1f, 0.1f);
 	data->obj_inst = insts;
 	data->camera = initialize_camera(1);
+	data->camera.rotation = make_rotation_matrix(0, 0);
+    data->camera.translation = make_translate_matrix();
+	((t_data*)data)->x = WIDTH / 2;
+    ((t_data*)data)->y = HIEGHT / 2;
 	mlx_hook(data->win_ptr, 2, 0, key_press, (void*)data);
 	mlx_hook(data->win_ptr, 3, 0, key_release, (void*)data);
 	mlx_hook(data->win_ptr, 4, 0, mouse_press, (void*)data);
 	mlx_hook(data->win_ptr, 5, 0, mouse_release, (void*)data);
 	mlx_hook(data->win_ptr, 6, 0, mouse_move, (void*)data);
+//	render_frame(data->obj_inst, 1, (void*)data);
 	mlx_loop_hook(data->mlx_ptr, frame_loop, data);
 	mlx_hook(data->win_ptr, 17, 0, x_press, data);
 	mlx_loop(data->mlx_ptr);

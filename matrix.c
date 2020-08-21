@@ -24,10 +24,10 @@ inline t_matrix		matrix_mult(t_matrix a, t_matrix b)
 		j = 0;
 		while (j < 4)
 		{
-			c.elem[i][j] = a.elem[0][i] * b.elem[j][0]
-					+ a.elem[1][i] * b.elem[j][1]
-					+ a.elem[2][i] * b.elem[j][2]
-					+ a.elem[3][i] * b.elem[j][3];
+			c.elem[i][j] = a.elem[i][0] * b.elem[0][j]
+					+ a.elem[i][1] * b.elem[1][j]
+					+ a.elem[i][2] * b.elem[2][j]
+					+ a.elem[i][3] * b.elem[3][j];
 			j++;
 		}
 		i++;
@@ -43,10 +43,10 @@ inline t_vec3		vec3_transform(t_matrix matrix, t_vec3 vec)
 	i = 0;
 	while (i < 4)
 	{
-		new_vec.elem[i] = vec.elem[0] * matrix.elem[0][i]
-				+ vec.elem[1] * matrix.elem[1][i]
-				+ vec.elem[2] * matrix.elem[2][i]
-				+ vec.elem[3] * matrix.elem[3][i];
+		new_vec.elem[i] = vec.elem[0] * matrix.elem[i][0]
+				+ vec.elem[1] * matrix.elem[i][1]
+				+ vec.elem[2] * matrix.elem[i][2]
+				+ vec.elem[3] * matrix.elem[i][3];
 		i++;
 	}
 	return (new_vec);

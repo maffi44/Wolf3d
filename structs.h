@@ -67,6 +67,7 @@ typedef struct	s_camera
 	t_matrix	rotation;
 	t_matrix	translation;
 	t_matrix	projection;
+	t_vec3		translate_vec;
     float		x_ang;
     float		y_ang;
 	float		d;
@@ -171,6 +172,10 @@ typedef struct	s_data
 	int			h_bool;
 	int			f_bool;
 	int			disco;
+	int			W_bool;
+	int			S_bool;
+	int			A_bool;
+	int			D_bool;
 }				t_data;
 
 #endif
