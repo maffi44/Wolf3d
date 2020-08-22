@@ -62,7 +62,9 @@ inline t_sp_tri	make_tri_in_space(t_inst_obj obj, t_tri tri, float d)
 		return (tr);
 
 	tr.bool = 0;
-
+	tr.light_vector1 = normalize_vec(obj.ref_obj->normals[tri.pt[0]]);
+	tr.light_vector2 = normalize_vec(obj.ref_obj->normals[tri.pt[1]]);
+	tr.light_vector3 = normalize_vec(obj.ref_obj->normals[tri.pt[2]]);
 	return (tr);
 }
 
@@ -145,12 +147,16 @@ void            make_camera_transform(t_camera *camera, t_data *data)
 	else
 		vector.elem[2] = 0.5f;
 	
+printf("forward - %f\n", vector.elem[2]);
+
 	if (data->A_bool == data->D_bool)
 		vector.elem[0] = 0;
 	else if (data->A_bool)
 		vector.elem[0] = 0.5f;
 	else
 		vector.elem[0] = -0.5f;
+
+printf("right - %f\n", vector.elem[0]);
 	
     camera->rotation = make_rotation_matrix(camera->y_ang, camera->x_ang);
 	camera->translation = make_translation_matrix(
@@ -228,8 +234,8 @@ void			render_frame(t_inst_obj *objects, int num_of_obj, t_data *data)
 
 	ft_bzero(data->img_data, WIDTH * HIEGHT * 4);
 	ft_bzero(data->zbuff, sizeof(float) * WIDTH * HIEGHT);
-	i = 0;
 	make_camera_transform(&(data->camera), data);
+	i = 0;
 	while (i < num_of_obj)
 	{
 		objects[i].transform = make_transform_matrix(objects[i], data->camera);

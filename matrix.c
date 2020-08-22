@@ -35,6 +35,17 @@ inline t_matrix		matrix_mult(t_matrix a, t_matrix b)
 	return (c);
 }
 
+t_vec3		make_vec(float x, float y, float z)
+{
+	t_vec3 vec;
+
+	vec.elem[0] = x;
+	vec.elem[1] = y;
+	vec.elem[2] = z;
+	vec.elem[3] = 1;
+	return (vec);
+}
+
 inline t_vec3		vec3_transform(t_matrix matrix, t_vec3 vec)
 {
 	t_vec3	new_vec;

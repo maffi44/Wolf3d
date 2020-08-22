@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcamila <mcamila@student.42.fr>            +#+  +:+       +#+        */
+/*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 05:22:04 by mcamila           #+#    #+#             */
-/*   Updated: 2020/02/22 05:23:23 by mcamila          ###   ########.fr       */
+/*   Updated: 2020/08/18 20:27:29 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,22 @@ int		key_release(int key, t_data *data)
         data->A_bool = 0;
     else if (key == 2)
         data->D_bool = 0;
-    /*
-	if (key == 15)
-		data->r_bool = 0;
-	else if (key == 4)
-		data->h_bool = 0;
-	else if (key == 3)
-		data->f_bool = 0;
-     */
+	// if (key == 53)
+	// 	go_away(data);
+	// else if (key == 15)
+	// 	data->r_bool = 1;
+	// else if (key == 12)
+	// 	data->q_bool = !(data->q_bool);
+	// else if (key == 4)
+	// 	data->h_bool = 1;
+	// else if (key == 3)
+	// 	data->f_bool = 1;
+	// else if (key == 24)
+	// 	data->disco++;
+	// else if (key == 27)
+	// 	if (data->disco > 1)
+	// 		data->disco--;
+    
 	return (0);
 }
 
@@ -95,6 +103,6 @@ int		mouse_press(int button, int x, int y, t_data *data)
 		mouse_scale_p(data);
 		render_frame(data->obj_inst, 1, data);
 	}
-     */
+    */
 	return (0);
 }

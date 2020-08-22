@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcamila <mcamila@student.42.fr>            +#+  +:+       +#+        */
+/*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 19:17:48 by mcamila           #+#    #+#             */
-/*   Updated: 2020/02/22 06:40:46 by mcamila          ###   ########.fr       */
+/*   Updated: 2020/08/17 14:28:16 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@ typedef struct	s_ref_obj
 	t_tex_coord *tex_coords;
 	int			num_of_pts;
 	int			num_of_tris;
+	int			num_of_tex_c;
+	int			num_of_normals;
+	//png_img     texture;
+
 }				t_ref_obj;
 
 typedef struct	s_inst_obj
@@ -161,6 +165,7 @@ typedef struct	s_data
 	int			bpp;
 	int			endian;
 	t_inst_obj	*obj_inst;
+	int			num_of_inst_objects;
 	float		d;
 	t_camera	camera;
 	t_vec3		dir_light;
