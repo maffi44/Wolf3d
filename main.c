@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 16:21:28 by mcamila           #+#    #+#             */
-/*   Updated: 2020/08/18 22:02:04 by majosue          ###   ########.fr       */
+/*   Updated: 2020/08/22 20:42:26 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,11 @@ int		main(int argc, char **argv)
 	data = NULL;
 	/* if (argc != 2)
 		error(0, data, NULL); */
-	ref_objs = ft_read_files(argc, argv, &ref_obj_nbr);
+	
 	if (!(data = (t_data*)malloc(sizeof(t_data))))
 		go_away(data);
 	inicializate_data(data);
+	ref_objs = ft_read_files(argc, argv, &ref_obj_nbr, data);
 	//-----------print ref_obj//
 	/* for (int j = 0; j < ref_objs->num_of_pts; j++)
 		printf("vertex %f, %f, %f\n", ref_objs->vertex[j].elem[0], ref_objs->vertex[j].elem[1], ref_objs->vertex[j].elem[2]);
