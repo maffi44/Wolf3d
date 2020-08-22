@@ -281,7 +281,7 @@ void	ft_load_obj(t_ref_obj *obj, int fd)
 	}
 }
 
-void ft_read_rest(int fd, t_data *data, char *line)
+void ft_read_rest(int fd, t_data *data, char *line, t_ref_obj *refs)
 {
 	int error;
 
@@ -296,6 +296,7 @@ void ft_read_rest(int fd, t_data *data, char *line)
 		ft_exit(NULL, NULL);
 	if (data->nbr_txtres < 4)
 		ft_exit("Error: need 4 textures minimum", "");
+	refs[0].txtr = data->txtre[0];
 }
 
 t_ref_obj	*ft_read_files(int argc, char *argv[], int *ref_obj_nbr, t_data *data)
@@ -322,7 +323,7 @@ t_ref_obj	*ft_read_files(int argc, char *argv[], int *ref_obj_nbr, t_data *data)
 		free(line);
 		close(fd_o);
 	}
-	ft_read_rest(fd, data, line);
+	ft_read_rest(fd, data, line, objs);
 	close(fd);
 	return (objs);
 }

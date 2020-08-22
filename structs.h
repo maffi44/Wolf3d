@@ -16,6 +16,14 @@
 # include "header.h"
 # include "matrix.h"
 
+typedef	struct	s_texture
+{
+	void	*img;
+	int		*data;
+	int		w;
+	int		h;
+}				t_texture;
+
 typedef struct	s_pt2
 {
 	float		x;
@@ -51,7 +59,7 @@ typedef struct	s_ref_obj
 	int			num_of_tris;
 	int			num_of_tex_c;
 	int			num_of_normals;
-	//png_img     texture;
+	t_texture   txtr;
 
 }				t_ref_obj;
 
@@ -122,20 +130,29 @@ typedef struct	s_draw
 	float		z2;
 	float		zb1;
 	float		zb2;
-	float		c_r1;
-	float		c_g1;
-	float		c_b1;
-	float		c_r2;
-	float		c_g2;
-	float		c_b2;
-	float		cb_r1;
-	float		cb_g1;
-	float		cb_b1;
-	float		cb_r2;
-	float		cb_g2;
-	float		cb_b2;
+	// float		c_r1;
+	// float		c_g1;
+	// float		c_b1;
+	// float		c_r2;
+	// float		c_g2;
+	// float		c_b2;
+	// float		cb_r1;
+	// float		cb_g1;
+	// float		cb_b1;
+	// float		cb_r2;
+	// float		cb_g2;
+	// float		cb_b2;
+	float		tu1;
+	float		tu2;
+	float		tw1;
+	float		tw2;
+	float		tu_b1;
+	float		tu_b2;
+	float		tw_b1;
+	float		tw_b2;
 	t_color		col1;
 	t_color		col2;
+	t_texture	txtr;
 }				t_draw;
 
 typedef struct	s_hln
@@ -153,20 +170,15 @@ typedef struct	s_hln
 	float		cb_g;
 	float		cb_b;
 
-	float		tc1;
-	float		tc2;
-	float		tc3;
-	float		tc4;
+	float		tu1;
+	float		tu2;
+	float		tu_b;
+	float		tw1;
+	float		tw2;
+	float		tw_b;
 	t_color		col;
+	t_texture	txtr;
 }				t_hln;
-
-typedef	struct	s_texture
-{
-	void	*img;
-	int		*data;
-	int		w;
-	int		h;
-}				t_texture;
 
 typedef struct	s_data
 {

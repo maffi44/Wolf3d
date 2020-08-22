@@ -86,15 +86,15 @@ inline t_sc_tri	mk_sc_tri(t_sp_tri sp, t_data *data, t_inst_obj obj, t_tri tri)
 	sc.pt1.light = vec_scalar_mult(sp.normal, sp.light_vector1) * 0.95f;
 	sc.pt2.light = vec_scalar_mult(sp.normal, sp.light_vector2) * 0.95f;
 	sc.pt3.light = vec_scalar_mult(sp.normal, sp.light_vector3) * 0.95f;
-	sc.pt1.c.argb = obj.ref_obj->vertex[tri.pt[0]].color;
-	sc.pt2.c.argb = obj.ref_obj->vertex[tri.pt[1]].color;
-	sc.pt3.c.argb = obj.ref_obj->vertex[tri.pt[2]].color;
-	sc.pt1.tex_coord[0] = (obj.ref_obj->tex_coords[tri.pt[0]]).coord[0];
-	sc.pt1.tex_coord[1] = (obj.ref_obj->tex_coords[tri.pt[0]]).coord[1];
-	sc.pt2.tex_coord[0] = (obj.ref_obj->tex_coords[tri.pt[1]]).coord[0];
-	sc.pt2.tex_coord[1] = (obj.ref_obj->tex_coords[tri.pt[1]]).coord[1];
-	sc.pt3.tex_coord[0] = (obj.ref_obj->tex_coords[tri.pt[2]]).coord[0];
-	sc.pt3.tex_coord[1] = (obj.ref_obj->tex_coords[tri.pt[2]]).coord[1];
+	// sc.pt1.c.argb = obj.ref_obj->vertex[tri.pt[0]].color;
+	// sc.pt2.c.argb = obj.ref_obj->vertex[tri.pt[1]].color;
+	// sc.pt3.c.argb = obj.ref_obj->vertex[tri.pt[2]].color;
+	sc.pt1.tex_coord[0] = (obj.ref_obj->tex_coords[tri.pt[0]]).coord[0] / sp.vertex1.elem[2];
+	sc.pt1.tex_coord[1] = (obj.ref_obj->tex_coords[tri.pt[0]]).coord[1] / sp.vertex1.elem[2];
+	sc.pt2.tex_coord[0] = (obj.ref_obj->tex_coords[tri.pt[1]]).coord[0] / sp.vertex2.elem[2];
+	sc.pt2.tex_coord[1] = (obj.ref_obj->tex_coords[tri.pt[1]]).coord[1] / sp.vertex2.elem[2];
+	sc.pt3.tex_coord[0] = (obj.ref_obj->tex_coords[tri.pt[2]]).coord[0] / sp.vertex3.elem[2];
+	sc.pt3.tex_coord[1] = (obj.ref_obj->tex_coords[tri.pt[2]]).coord[1] / sp.vertex3.elem[2];
 	return (sc);
 }
 
@@ -108,7 +108,7 @@ void			draw_triangle(t_inst_obj obj, t_tri tri, t_data *data)
 		return ;
 
 	screen_tri = mk_sc_tri(space_tri, data, obj, tri);
-	draw_tri(screen_tri.pt1, screen_tri.pt2, screen_tri.pt3, data);
+	draw_tri(screen_tri.pt1, screen_tri.pt2, screen_tri.pt3, data, obj.ref_obj->txtr);
 }
 
 t_matrix		make_cam_rot_matrix(float x_rot, float y_rot)
@@ -168,7 +168,7 @@ void            make_camera_transform(t_camera *camera, t_data *data)
 
     camera->rotation = matrix_mult(x_rot, y_rot);
 	camera->translation = make_translation_matrix(
-		camera->translation, camera, vector);
+	camera->translation, camera, vector);
     camera->transform = matrix_mult(camera->rotation, camera->translation);
 }
 
@@ -254,6 +254,5 @@ void			render_frame(t_inst_obj *objects, int num_of_obj, t_data *data)
 					objects[i].ref_obj->tri[j], data);
 		i++;
 	}
-
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_ptr, 0, 0);
 }
