@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 19:17:48 by mcamila           #+#    #+#             */
-/*   Updated: 2020/08/17 14:28:16 by majosue          ###   ########.fr       */
+/*   Updated: 2020/08/22 19:00:37 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,14 @@ typedef struct	s_hln
 	t_color		col;
 }				t_hln;
 
+typedef	struct	s_texture
+{
+	void	*img;
+	int		*data;
+	int		w;
+	int		h;
+}				t_texture;
+
 typedef struct	s_data
 {
 	void		*mlx_ptr;
@@ -187,6 +195,8 @@ typedef struct	s_data
 	int			S_bool;
 	int			A_bool;
 	int			D_bool;
+	t_texture 	*txtre;
+	int			nbr_txtres;
 }				t_data;
 
 #endif

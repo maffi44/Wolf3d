@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/16 20:51:07 by majosue           #+#    #+#             */
-/*   Updated: 2020/08/18 22:01:44 by majosue          ###   ########.fr       */
+/*   Updated: 2020/08/22 20:38:38 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,14 @@ void	ft_check_args(int argc, char **argv, int *obj_nbr)
 		ft_exit("usage: ./wolf3d file.map", "");
 	if ((fd = open(argv[1], O_RDONLY)) < 0)
 		ft_exit(NULL, NULL);
-	while ((error = get_next_line(fd, &line)) && strnstr(line, "obj ", 4))
+	while ((error = get_next_line(fd, &line)) > 0)
 	{
-		(*obj_nbr)++;
+		if (strnstr(line, "obj ", 4))
+			*obj_nbr += 1;
+		free(line);
 	}
+	if (error < 0)
+		ft_exit(NULL, NULL);
 	close(fd);
 	if (!*obj_nbr)
 	{
@@ -234,6 +238,24 @@ void	ft_read_f(t_ref_obj *obj, char *line)
 	ft_clean_array(&array);
 }
 
+/*
+**	Read read textures from xpm files;
+*/
+
+void	ft_read_texture(t_data *data, char *line)
+{
+	t_texture txtre;
+
+	int tmp;
+	if (!(txtre.img = mlx_xpm_file_to_image(data->mlx_ptr, line, &txtre.w, &txtre.h)))
+		ft_exit(NULL, NULL);
+	if (!(txtre.data = (int*)mlx_get_data_addr(txtre.img, &tmp, &tmp, &tmp)))
+		ft_exit(NULL, NULL);
+	data->nbr_txtres++;
+	data->txtre = (t_texture *)ft_grow_array(data->txtre, data->nbr_txtres, sizeof(t_texture));
+	ft_memmove((void *)&(data->txtre[data->nbr_txtres - 1]), &txtre, sizeof(txtre));
+}
+
 void	ft_load_obj(t_ref_obj *obj, int fd)
 {
 
@@ -259,7 +281,24 @@ void	ft_load_obj(t_ref_obj *obj, int fd)
 	}
 }
 
-t_ref_obj	*ft_read_files(int argc, char *argv[], int *ref_obj_nbr)
+void ft_read_rest(int fd, t_data *data, char *line)
+{
+	int error;
+
+	data->txtre = NULL;
+	data->nbr_txtres = 0;
+	while ((error = get_next_line(fd, &line) > 0) && strnstr(line, "xpm ", 4))
+		{
+			ft_read_texture(data, line + 4);
+			free(line);
+		}
+	if (error == -1)
+		ft_exit(NULL, NULL);
+	if (data->nbr_txtres < 4)
+		ft_exit("Error: need 4 textures minimum", "");
+}
+
+t_ref_obj	*ft_read_files(int argc, char *argv[], int *ref_obj_nbr, t_data *data)
 {
 	int fd;
 	int fd_o;
@@ -273,7 +312,7 @@ t_ref_obj	*ft_read_files(int argc, char *argv[], int *ref_obj_nbr)
 	if ((fd = open(argv[1], O_RDONLY)) < 0)
 			ft_exit(NULL, NULL);	
 	i = -1;
-	while (++i < *ref_obj_nbr)
+	while (++i < (*ref_obj_nbr))
 	{
 		if (get_next_line(fd, &line) < 0)
 			ft_exit(NULL, NULL);
@@ -283,5 +322,7 @@ t_ref_obj	*ft_read_files(int argc, char *argv[], int *ref_obj_nbr)
 		free(line);
 		close(fd_o);
 	}
+	ft_read_rest(fd, data, line);
+	close(fd);
 	return (objs);
 }

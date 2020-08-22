@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 02:00:33 by mcamila           #+#    #+#             */
-/*   Updated: 2020/08/18 21:55:17 by majosue          ###   ########.fr       */
+/*   Updated: 2020/08/22 18:43:32 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ int				key_press(int key, t_data *data);
 int				x_press(void *data);
 void			make_tris(t_ref_obj *obj, t_maps *maps, int x, int y);
 void			del_maps(t_maps *maps);
-t_ref_obj       *ft_read_files(int argc, char *argv[], int *ref_obj_nbr);
+t_ref_obj       *ft_read_files(int argc, char *argv[], int *ref_obj_nbr, t_data *data);
 t_inst_obj      make_obj_inst_new(t_ref_obj *ref, t_vec3 sc, t_vec3 tr);
-
 #endif
