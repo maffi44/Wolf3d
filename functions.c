@@ -110,7 +110,7 @@ t_pt2		make_pt2_from_v3(t_vec3 vec, float d)
 	float y;
 
 	vec.elem[0] = vec.elem[0] / vec.elem[3];
-	vec.elem[1] = vec.elem[1] / vec.elem[3];
+	vec.elem[1] = vec.elem[1] / vec.elem[3] * -1;
 	vec.elem[2] = vec.elem[2] / vec.elem[3];
 	x = vec.elem[0] * d / vec.elem[2];
 	y = vec.elem[1] * d / vec.elem[2];

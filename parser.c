@@ -162,7 +162,7 @@ void	ft_read_v(t_ref_obj *obj, char *line)
 	vertex.elem[1] = ft_atof(array[1]);
 	vertex.elem[2] = ft_atof(array[2]);
 	vertex.elem[3] = 1;
-	vertex.color = 55;
+	vertex.color = 0xaabbcc00;
 	obj->num_of_pts++;
 	obj->vertex = (t_vec3 *)ft_grow_array(obj->vertex, obj->num_of_pts, sizeof(vertex));
 	ft_memmove((void *)&(obj->vertex[obj->num_of_pts - 1]), &vertex, sizeof(vertex));

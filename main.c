@@ -175,13 +175,12 @@ int		main(int argc, char **argv)
 	//------------
 	//exit (0);
 	//ref_objs = make_ref_obj(argv[1], data);
-	data->num_of_inst_objects = 3;
-	insts = (t_inst_obj*)malloc(sizeof(t_inst_obj) * 3);
+	data->num_of_inst_objects = 1;
+	insts = (t_inst_obj*)malloc(sizeof(t_inst_obj) * 1);
 	insts[0] = make_obj_inst_new(ref_objs, make_vec(0.5, 0.5, 0.5), make_vec(2, 3, 3));
-	insts[1] = make_obj_inst_new(ref_objs, make_vec(1, 1, 1), make_vec(-2, 3, 5));
-	insts[2] = make_obj_inst_new(ref_objs, make_vec(2, 0.4, 0.7), make_vec(1, 1, 1));
+	// insts[1] = make_obj_inst_new(ref_objs, make_vec(1, 1, 1), make_vec(-2, 3, 5));
+	// insts[2] = make_obj_inst_new(ref_objs, make_vec(2, 0.4, 0.7), make_vec(1, 1, 1));
 	data->obj_inst = insts;
-	data->num_of_inst_objects = 3;
 	data->camera = initialize_camera(2);
 	data->camera.rotation = make_rotation_matrix(0, 0);
     data->camera.translation = make_translate_matrix();
