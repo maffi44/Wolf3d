@@ -62,9 +62,10 @@ inline t_sp_tri	make_tri_in_space(t_inst_obj obj, t_tri tri, float d)
 		return (tr);
 
 	tr.bool = 0;
-	tr.light_vector1 = normalize_vec(obj.ref_obj->normals[tri.pt[0]]);
-	tr.light_vector2 = normalize_vec(obj.ref_obj->normals[tri.pt[1]]);
-	tr.light_vector3 = normalize_vec(obj.ref_obj->normals[tri.pt[2]]);
+	// tr.light_vector1 = normalize_vec(obj.ref_obj->normals[tri.pt[0]]);
+	// tr.light_vector2 = normalize_vec(obj.ref_obj->normals[tri.pt[1]]);
+	// tr.light_vector3 = normalize_vec(obj.ref_obj->normals[tri.pt[2]]);
+
 	return (tr);
 }
 
@@ -88,6 +89,12 @@ inline t_sc_tri	mk_sc_tri(t_sp_tri sp, t_data *data, t_inst_obj obj, t_tri tri)
 	sc.pt1.c.argb = obj.ref_obj->vertex[tri.pt[0]].color;
 	sc.pt2.c.argb = obj.ref_obj->vertex[tri.pt[1]].color;
 	sc.pt3.c.argb = obj.ref_obj->vertex[tri.pt[2]].color;
+	sc.pt1.tex_coord[0] = (obj.ref_obj->tex_coords[tri.pt[0]]).coord[0];
+	sc.pt1.tex_coord[1] = (obj.ref_obj->tex_coords[tri.pt[0]]).coord[1];
+	sc.pt2.tex_coord[0] = (obj.ref_obj->tex_coords[tri.pt[1]]).coord[0];
+	sc.pt2.tex_coord[1] = (obj.ref_obj->tex_coords[tri.pt[1]]).coord[1];
+	sc.pt3.tex_coord[0] = (obj.ref_obj->tex_coords[tri.pt[2]]).coord[0];
+	sc.pt3.tex_coord[1] = (obj.ref_obj->tex_coords[tri.pt[2]]).coord[1];
 	return (sc);
 }
 
@@ -245,8 +252,6 @@ void			render_frame(t_inst_obj *objects, int num_of_obj, t_data *data)
 		while (++j < objects[i].ref_obj->num_of_tris)
 			draw_triangle(objects[i],
 					objects[i].ref_obj->tri[j], data);
-		// if (data->q_bool)
-		// 	color_loop(objects[i].ref_obj, 4);
 		i++;
 	}
 

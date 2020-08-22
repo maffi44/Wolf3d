@@ -23,6 +23,7 @@ typedef struct	s_pt2
 	float		z1;
 	t_color		c;
 	float		light;
+	float		tex_coord[2];
 }				t_pt2;
 
 typedef struct	s_tri
@@ -151,6 +152,11 @@ typedef struct	s_hln
 	float		cb_r;
 	float		cb_g;
 	float		cb_b;
+
+	float		tc1;
+	float		tc2;
+	float		tc3;
+	float		tc4;
 	t_color		col;
 }				t_hln;
 

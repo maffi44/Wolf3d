@@ -58,8 +58,8 @@ int		mouse_move(int x, int y, t_data *data)
 {
 	if (data->mouse_bool)
 	{
-		data->camera.y_ang -= (float)(y - data->y) / 1000;
-    	data->camera.x_ang += (float)(x - data->x) / 1000;
+		data->camera.y_ang -= (float)(y - data->y) / 700;
+    	data->camera.x_ang -= (float)(x - data->x) / 800;
 	}
     mlx_clear_window(data->mlx_ptr, data->win_ptr);
     render_frame(data->obj_inst, data->num_of_inst_objects, data);
