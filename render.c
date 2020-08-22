@@ -95,6 +95,9 @@ inline t_sc_tri	mk_sc_tri(t_sp_tri sp, t_data *data, t_inst_obj obj, t_tri tri)
 	sc.pt2.tex_coord[1] = (obj.ref_obj->tex_coords[tri.pt[1]]).coord[1] / sp.vertex2.elem[2];
 	sc.pt3.tex_coord[0] = (obj.ref_obj->tex_coords[tri.pt[2]]).coord[0] / sp.vertex3.elem[2];
 	sc.pt3.tex_coord[1] = (obj.ref_obj->tex_coords[tri.pt[2]]).coord[1] / sp.vertex3.elem[2];
+
+	// printf("%f  ", sc.pt1.tex_coord[0]);
+	// printf("%f\n", sc.pt1.tex_coord[1]);
 	return (sc);
 }
 

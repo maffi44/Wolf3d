@@ -43,12 +43,14 @@ inline void		draw_pixel(int y, t_data *data, t_hln *ln)
 		(int)(((ln->txtr.w * (ln->tu1 / ln->z0)) +
 		(ln->txtr.h * (ln->tw1 / ln->z0) *
 		ln->txtr.w)) - 1)]);
+	
+	// printf("%f       %f\n", ln->tu1, ln->tw1);
 	// ln->col.colors[2] = (char)(ln->c_r * data->disco);
 	// ln->col.colors[1] = (char)(ln->c_g * data->disco);
 	// ln->col.colors[0] = (char)(ln->c_b * data->disco);
-	col.colors[2] = (char)(ln->col.colors[2] * ln->h);
-	col.colors[1] = (char)(ln->col.colors[1] * ln->h);
-	col.colors[0] = (char)(ln->col.colors[0] * ln->h);
+	col.colors[2] = (char)(col.colors[2] * ln->h);
+	col.colors[1] = (char)(col.colors[1] * ln->h);
+	col.colors[0] = (char)(col.colors[0] * ln->h);
 	put_pixel((int)ln->x, y, col.argb, data);
 }
 
