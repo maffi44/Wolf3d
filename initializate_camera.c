@@ -78,7 +78,8 @@ t_camera	initialize_camera(float d)
 
 	initialize_rotation(&cam);
 	initialize_translation(&cam);
-	initialize_projection(&cam, d);
+	cam.d = d;
+	//initialize_projection(&cam, d);
 	return (cam);
 }
 

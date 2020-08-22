@@ -111,3 +111,49 @@ inline t_vec3		normalize_vec(t_vec3 vec)
 	vec.elem[3] = 1;
 	return (vec);
 }
+
+t_matrix	make_matrix_x_rot(float a)
+{
+	t_matrix mat;
+
+	mat.elem[0][0] = 1;
+	mat.elem[0][1] = 0;
+	mat.elem[0][2] = 0;
+	mat.elem[0][3] = 0;
+	mat.elem[1][0] = 0;
+	mat.elem[1][1] = cosf(a);
+	mat.elem[1][2] = -sinf(a);
+	mat.elem[1][3] = 0;
+	mat.elem[2][0] = 0;
+	mat.elem[2][1] = sinf(a);
+	mat.elem[2][2] = cosf(a);
+	mat.elem[2][3] = 0;
+	mat.elem[3][0] = 0;
+	mat.elem[3][1] = 0;
+	mat.elem[3][2] = 0;
+	mat.elem[3][3] = 1;
+	return (mat);
+}
+
+t_matrix	make_matrix_y_rot(float a)
+{
+	t_matrix mat;
+
+	mat.elem[0][0] = cosf(a);
+	mat.elem[0][1] = 0;
+	mat.elem[0][2] = sinf(a);
+	mat.elem[0][3] = 0;
+	mat.elem[1][0] = 0;
+	mat.elem[1][1] = 1;
+	mat.elem[1][2] = 0;
+	mat.elem[1][3] = 0;
+	mat.elem[2][0] = -sinf(a);
+	mat.elem[2][1] = 0;
+	mat.elem[2][2] = cosf(a);
+	mat.elem[2][3] = 0;
+	mat.elem[3][0] = 0;
+	mat.elem[3][1] = 0;
+	mat.elem[3][2] = 0;
+	mat.elem[3][3] = 1;
+	return (mat);
+}

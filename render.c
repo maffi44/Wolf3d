@@ -97,7 +97,7 @@ void			draw_triangle(t_inst_obj obj, t_tri tri, t_data *data)
 	t_sc_tri	screen_tri;
 
 
-	if ((space_tri = make_tri_in_space(obj, tri, data->d)).bool)
+	if ((space_tri = make_tri_in_space(obj, tri, data->camera.d)).bool)
 		return ;
 
 	screen_tri = mk_sc_tri(space_tri, data, obj, tri);
@@ -139,6 +139,8 @@ t_matrix		make_translation_matrix(t_matrix transltion, t_camera *camera, t_vec3 
 void            make_camera_transform(t_camera *camera, t_data *data)
 {
 	t_vec3 vector;
+	t_matrix	x_rot;
+	t_matrix	y_rot;
 
 	if (data->W_bool == data->S_bool)
 		vector.elem[2] = 0;
@@ -146,8 +148,6 @@ void            make_camera_transform(t_camera *camera, t_data *data)
 		vector.elem[2] = -0.5f;
 	else
 		vector.elem[2] = 0.5f;
-	
-printf("forward - %f\n", vector.elem[2]);
 
 	if (data->A_bool == data->D_bool)
 		vector.elem[0] = 0;
@@ -155,10 +155,11 @@ printf("forward - %f\n", vector.elem[2]);
 		vector.elem[0] = 0.5f;
 	else
 		vector.elem[0] = -0.5f;
-
-printf("right - %f\n", vector.elem[0]);
 	
-    camera->rotation = make_rotation_matrix(camera->y_ang, camera->x_ang);
+	x_rot = make_matrix_x_rot(camera->y_ang);
+	y_rot = make_matrix_y_rot(camera->x_ang);
+
+    camera->rotation = matrix_mult(x_rot, y_rot);
 	camera->translation = make_translation_matrix(
 		camera->translation, camera, vector);
     camera->transform = matrix_mult(camera->rotation, camera->translation);
