@@ -39,11 +39,12 @@ inline void		draw_pixel(int y, t_data *data, t_hln *ln)
 	t_color col;
 
 	data->zbuff[((int)ln->x + (y * (WIDTH))) - 1] = ln->z0;
-	col.argb = (ln->txtr.data[
-		(int)(((ln->txtr.w * (ln->tu1 / ln->z0)) +
-		(ln->txtr.h * (ln->tw1 / ln->z0) *
-		ln->txtr.w)) - 1)]);
+	// col.argb = (ln->txtr.data[
+	// 	(int)(((ln->txtr.w * (ln->tu1 / ln->z0)) +
+	// 	(ln->txtr.h * (ln->tw1 / ln->z0) *
+	// 	ln->txtr.w)) - 1)]);
 	
+	col.argb = 0x00cccccc;
 	// printf("%f       %f\n", ln->tu1, ln->tw1);
 	// ln->col.colors[2] = (char)(ln->c_r * data->disco);
 	// ln->col.colors[1] = (char)(ln->c_g * data->disco);
