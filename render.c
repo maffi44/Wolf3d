@@ -96,8 +96,23 @@ inline t_sc_tri	mk_sc_tri(t_sp_tri sp, t_data *data, t_inst_obj obj, t_tri tri)
 	sc.pt3.tex_coord[0] = (obj.ref_obj->tex_coords[tri.pt[2]]).coord[0] / sp.vertex3.elem[2];
 	sc.pt3.tex_coord[1] = (obj.ref_obj->tex_coords[tri.pt[2]]).coord[1] / sp.vertex3.elem[2];
 
-	// printf("%f  ", sc.pt1.tex_coord[0]);
-	// printf("%f\n", sc.pt1.tex_coord[1]);
+	// printf("\n\n%f  ", (obj.ref_obj->tex_coords[tri.pt[0]]).coord[0]);
+	// printf("%f\n", (obj.ref_obj->tex_coords[tri.pt[0]]).coord[1]);
+	// printf("%f  ", (obj.ref_obj->tex_coords[tri.pt[1]]).coord[0]);
+	// printf("%f\n", (obj.ref_obj->tex_coords[tri.pt[1]]).coord[1]);
+	// printf("%f  ", (obj.ref_obj->tex_coords[tri.pt[2]]).coord[0]);
+	// printf("%f\n\n", (obj.ref_obj->tex_coords[tri.pt[2]]).coord[1]);
+
+	// printf("%f  ", sp.vertex1.elem[2]);
+	// printf("%f  ", sp.vertex2.elem[2]);
+	// printf("%f\n\n", sp.vertex3.elem[2]);
+
+	// printf("%f  ", (obj.ref_obj->tex_coords[tri.pt[0]]).coord[0] / sp.vertex1.elem[2]);
+	// printf("%f\n", (obj.ref_obj->tex_coords[tri.pt[0]]).coord[1] / sp.vertex1.elem[2]);
+	// printf("%f  ", (obj.ref_obj->tex_coords[tri.pt[1]]).coord[0] / sp.vertex2.elem[2]);
+	// printf("%f\n", (obj.ref_obj->tex_coords[tri.pt[1]]).coord[1] / sp.vertex2.elem[2]);
+	// printf("%f  ", (obj.ref_obj->tex_coords[tri.pt[2]]).coord[0] / sp.vertex3.elem[2]);
+	// printf("%f\n\n", (obj.ref_obj->tex_coords[tri.pt[2]]).coord[1] / sp.vertex3.elem[2]);
 	return (sc);
 }
 
