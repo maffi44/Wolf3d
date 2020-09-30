@@ -192,23 +192,23 @@ void            make_camera_transform(t_camera *camera, t_data *data)
 
 void			print_matrix(t_matrix mat)
 {
-	//printf("%.2f   ", mat.elem[0][0]);
-	//printf("%.2f   ", mat.elem[0][1]);
-	//printf("%.2f   ", mat.elem[0][2]);
-	//printf("%.2f   \n", mat.elem[0][3]);
-	//printf("%.2f   ", mat.elem[1][0]);
-	//printf("%.2f   ", mat.elem[1][1]);
-	//printf("%.2f   ", mat.elem[1][2]);
-	//printf("%.2f   \n", mat.elem[1][3]);
-	//printf("%.2f   ", mat.elem[2][0]);
-	//printf("%.2f   ", mat.elem[2][1]);
-	//printf("%.2f   ", mat.elem[2][2]);
-	//printf("%.2f   \n", mat.elem[2][3]);
-	//printf("%.2f   ", mat.elem[3][0]);
-	//printf("%.2f   ", mat.elem[3][1]);
-	//printf("%.2f   ", mat.elem[3][2]);
-	//printf("%.2f   \n", mat.elem[3][3]);
-	//printf("\n");
+	printf("%.2f   ", mat.elem[0][0]);
+	printf("%.2f   ", mat.elem[0][1]);
+	printf("%.2f   ", mat.elem[0][2]);
+	printf("%.2f   \n", mat.elem[0][3]);
+	printf("%.2f   ", mat.elem[1][0]);
+	printf("%.2f   ", mat.elem[1][1]);
+	printf("%.2f   ", mat.elem[1][2]);
+	printf("%.2f   \n", mat.elem[1][3]);
+	printf("%.2f   ", mat.elem[2][0]);
+	printf("%.2f   ", mat.elem[2][1]);
+	printf("%.2f   ", mat.elem[2][2]);
+	printf("%.2f   \n", mat.elem[2][3]);
+	printf("%.2f   ", mat.elem[3][0]);
+	printf("%.2f   ", mat.elem[3][1]);
+	printf("%.2f   ", mat.elem[3][2]);
+	printf("%.2f   \n", mat.elem[3][3]);
+	printf("\n");
 }
 
 inline t_matrix		make_transform_matrix(t_inst_obj obj, t_camera camera)

@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_parser.h                                       :+:      :+:    :+:   */
+/*   ft_lstadd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcamila <mcamila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/06 12:18:32 by mcamila           #+#    #+#             */
-/*   Updated: 2020/02/19 21:22:05 by mcamila          ###   ########.fr       */
+/*   Created: 2019/09/21 15:11:32 by mcamila           #+#    #+#             */
+/*   Updated: 2019/09/21 15:22:12 by mcamila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_PARSER_H
-# define MAP_PARSER_H
+#include "libft.h"
 
-# include "structs.h"
-
-t_ref_obj	make_ref_obj(char *file_name, t_data *data);
-t_ref_obj   *ft_read_map_and_make_ref_obj(int argc, char **argv, t_data *data);
-
-
-
-#endif
+t_list	*ft_lstaddtohead(t_list *head, t_list *new)
+{
+	if (!head || !new)
+		return (NULL);
+	head->next = new;
+	new->next = NULL;
+    return (new);
+}
